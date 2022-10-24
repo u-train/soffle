@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "serve": "node .",
+    "clean": "rm -rf public_build && rm -rf .cache",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "utrain",
