@@ -1,15 +1,24 @@
-const express = require("express")
-const Bundler = require("parcel-bundler")
-const process = require("process")
-const lol = require("./shared/lol.js")
+const express = require('express');
+const webpack = require('webpack');
+const webpackDevMiddleware = require('webpack-dev-middleware');
 
-const bundler = new Bundler("public/index.html", {
-	outDir: "public_build",
-	publicUrl: "/public"
-})
+// Just testing that the shared worked.
+require("./shared/lol.js")
 
-const app = express()
-app.use(bundler.middleware())
-app.use("/shared", express.static("shared"))
+const app = express();
+const config = require('./webpack.config.js');
+const compiler = webpack(config);
 
-app.listen(3000, () => console.log(`Server started, ${lol}`))
+// Tell express to use the webpack-dev-middleware and use the webpack.config.js
+// configuration file as a base.
+// By default, it caches using the memory.
+app.use("/",
+  webpackDevMiddleware(compiler, {
+    publicPath: config.output.publicPath,
+  })
+);
+
+// Serve the files on port 3000.
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!\n');
+});

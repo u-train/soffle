@@ -12,10 +12,11 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
-    "lo": "^0.41.0",
-    "lol": "^1.0.101-lol",
-    "parcel": "^2.7.0",
-    "parcel-bundler": "^1.12.5",
-    "shared": "^0.2.0"
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.74.0",
+    "webpack-dev-middleware": "^5.3.3"
+  },
+  "alias": {
+    "shared": "./shared"
   }
 }

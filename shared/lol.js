@@ -1,3 +1,10 @@
-console.log("please just work i beg")
+module.exports = (callback) => {
+	let counter = 0
+	let id = setInterval(() => {
+		counter++
+		callback(counter)
+	}, 1000)
 
-module.exports =  "lol"
+	return () =>
+		clearInterval(id)
+}
