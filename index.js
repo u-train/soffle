@@ -8,6 +8,7 @@ require("./shared/lol.js")
 const app = express();
 const config = require('./webpack.config.js');
 const compiler = webpack(config);
+const port = 3000
 
 // Tell express to use the webpack-dev-middleware and use the webpack.config.js
 // configuration file as a base.
@@ -18,7 +19,7 @@ app.use("/",
   })
 );
 
-// Serve the files on port 3000.
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!\n');
+// Serve the files on given port.
+app.listen(port, function () {
+  console.log(`Running on http://localhost:${port}\n`);
 });
