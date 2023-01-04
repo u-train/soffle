@@ -22,7 +22,7 @@ module.exports = class Screen {
 	}
 
 	render(ctx) {
-		let ctx = this.ctx
+		// let ctx = this.ctx
 		let world = this.world
 
 		ctx.fillStyle = "#222"
