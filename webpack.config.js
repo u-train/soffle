@@ -1,23 +1,19 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports ={
+const entries = [
+	"index.html",
+	"second.html"
+]
+
+module.exports = {
 	mode: 'development',
 	entry: {
 		index: './public/index.js',
+		second: './public/second.js',
 	},
 	devtool: 'inline-source-map',
-	plugins: [
-		new HtmlWebpackPlugin({
-			filename: "index.html",
-			template: "public/index.html",
-		}),
-		new HtmlWebpackPlugin({
-			filename: "second.html",
-			template: "public/second.html",
-			chunks: [],
-		})
-	],
+	plugins: entries.map((entry) => new HtmlWebpackPlugin({ inject: false, filename: entry, template: "public/" + entry })),
 	resolve: {
 		alias: {
 			shared: path.resolve(__dirname, "shared/")
