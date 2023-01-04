@@ -2,9 +2,13 @@ const Planet = require("./entities/Planet");
 const Player = require("./entities/Player");
 const World = require("./World")
 
+let world
+beforeAll(() => {
+	world = new World()
+})
+
 describe("Planet growth", () => {
 	test("not grow neutral worlds.", () => {
-		let world = new World()
 		const startingAmount = 16
 
 		let planet = world.addEntity(Planet, world.neutral.id, { x: 50, y: 50 }, startingAmount)
@@ -13,7 +17,6 @@ describe("Planet growth", () => {
 	})
 
 	test("grow non-neutral worlds", () => {
-		let world = new World()
 		const startingAmount = 16
 
 		let player = world.addEntity(Player, "Bob", "#f00")
