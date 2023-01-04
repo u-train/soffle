@@ -1,7 +1,7 @@
 const Player = require("./entities/Player.js")
 
 module.exports = class World {
-	static entityOrder = ["unitTransport", "planet"]
+	static entityOrder = ["unitTransport", "planet", "player", "unknown"]
 
 	constructor() {
 		this.currentTick = 0
@@ -9,7 +9,14 @@ module.exports = class World {
 		this.nextId = 0
 
 		this.neutral = this.addEntity(Player, "neutral", "rgb(127, 127, 127)")
+	}
 
+	reset() {
+		this.currentTick = 0
+		this.entities = []
+		this.nextId = 0
+
+		this.neutral = this.addEntity(Player, "neutral", "rgb(127, 127, 127)")
 	}
 
 	moveUnits(fromWhoId, fromWhere, targetId, percentageFromEach = 0.5) {
@@ -39,6 +46,12 @@ module.exports = class World {
 		return newEntity
 	}
 
+	removeEntity(id) {
+		let index = this.entities.findIndex((maybeEntity) => maybeEntity.id === id)
+		let result = this.entities.splice(index, 1)
+		return result[0]
+	}
+
 	findEntity(id) {
 		return this.entities.find((maybeEntity) => maybeEntity.id === id)
 	}
@@ -57,6 +70,9 @@ module.exports = class World {
 
 			let aOrder = World.entityOrder.findIndex((value) => value === a.type)
 			let bOrder = World.entityOrder.findIndex((value) => value === b.type)
+
+			if (aOrder === undefined || bOrder === undefined)
+				console.error("Invariant broken, there is an entity that is not listed.")
 
 			if (aOrder < bOrder)
 				return -1

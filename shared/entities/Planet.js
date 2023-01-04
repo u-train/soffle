@@ -23,14 +23,16 @@ module.exports = class Planet extends Entity {
 		let currentUnits = this.getUnitsFor(forWhoId)
 
 		if (!currentUnits) return;
-
+		if (currentUnits.count === 0) return;
+		
 		let actualAmount = currentUnits.count * percentageFromEach
 		currentUnits.count -= actualAmount
 
-		world.addEntity(UnitTransport, forWhoId, targetId, numberOfUnits)
+		return world.addEntity(UnitTransport, world, forWhoId, this.id, targetId, actualAmount)
 	}
 
 	addUnitsIn(forWhoId, howMany) {
+		console.log(forWhoId, howMany)
 		let unit = this.getUnitsFor(forWhoId)
 	
 		unit.count += howMany
@@ -63,7 +65,7 @@ module.exports = class Planet extends Entity {
 		let unit = this.units.find((maybeUnit) => maybeUnit.ownerId === id)
 
 		if (!unit) {
-			unit = { ownerId: forWhoId, howMany: 0 }
+			unit = { ownerId: forWhoId, count: 0 }
 			this.units.push(unit)
 		}
 

@@ -9,19 +9,19 @@ const Entity = require("./Entity.js")
 // Essentially, try to recoup this unit.
 
 module.exports = class UnitTransport extends Entity {
-	static speedPerTick = 15 // 15 units
+	static speedPerTick = 10
 	type = "unitTransport"
 
-	constructor(id, ownerId, originId, goalId, amountOfUnits) {
-		this.id = id
+	constructor(id, world, ownerId, originId, goalId, amountOfUnits) {
+		super(id)
 		this.ownerId = ownerId
 		this.amountOfUnits = amountOfUnits
 		this.originId = originId
 		this.goalId = goalId
 		this.ticksTravelled = 0
 
-		let origin = this.getOrigin()
-		let goal = this.getGoal()
+		let origin = this.getOrigin(world)
+		let goal = this.getGoal(world)
 
 		this.totalDistanceTravelling = Math.sqrt(
 			Math.pow(origin.position.x - goal.position.x, 2)
@@ -32,10 +32,13 @@ module.exports = class UnitTransport extends Entity {
 	}
 
 	tick(world) {
-		this.tickMovement()
+		if (!this.hasReachedGoal()) {
+			this.tickMovement()
+		}
+
 		if (this.hasReachedGoal()) {
 			world.removeEntity(this.id)
-			let goal = this.getGoal()
+			let goal = this.getGoal(world)
 			goal.addUnitsIn(this.ownerId, this.amountOfUnits)
 		}
 	}

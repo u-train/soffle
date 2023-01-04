@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Moving units Should be able to move units from one planet to another successfully 1`] = `
+UnitTransport {
+  "amountOfUnits": 16,
+  "goalId": 3,
+  "id": 4,
+  "originId": 2,
+  "ownerId": 1,
+  "ticksTravelled": 0,
+  "totalDistanceTravelling": 30,
+  "totalTicksTravelling": 3,
+  "type": "unitTransport",
+}
+`;
+
+exports[`Moving units Should be able to move units from one planet to another successfully 2`] = `
+Planet {
+  "controlLevel": 1,
+  "id": 3,
+  "ownerId": 1,
+  "position": {
+    "x": 60,
+    "y": 30,
+  },
+  "type": "planet",
+  "units": [
+    {
+      "count": 18,
+      "ownerId": 1,
+    },
+  ],
+}
+`;
+
+exports[`Ticking Make sure entities update in the correct order. 1`] = `
+[
+  Planet {
+    "controlLevel": 1,
+    "id": 3,
+    "ownerId": 1,
+    "position": {
+      "x": 60,
+      "y": 30,
+    },
+    "type": "planet",
+    "units": [
+      {
+        "count": 0,
+        "ownerId": 1,
+      },
+    ],
+  },
+  Planet {
+    "controlLevel": 1,
+    "id": 2,
+    "ownerId": 1,
+    "position": {
+      "x": 30,
+      "y": 30,
+    },
+    "type": "planet",
+    "units": [
+      {
+        "count": 16,
+        "ownerId": 1,
+      },
+    ],
+  },
+  Player {
+    "color": "rgb(127, 127, 127)",
+    "id": 0,
+    "name": "neutral",
+    "type": "player",
+  },
+  Player {
+    "color": "#f00",
+    "id": 1,
+    "name": "Bob",
+    "type": "player",
+  },
+]
+`;
