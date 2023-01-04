@@ -6,7 +6,7 @@
   "scripts": {
     "serve": "node .",
     "clean": "rm -rf public_build && rm -rf .cache",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "utrain",
   "license": "ISC",
@@ -18,5 +18,8 @@
   },
   "alias": {
     "shared": "./shared"
+  },
+  "devDependencies": {
+    "jest": "^29.3.1"
   }
 }

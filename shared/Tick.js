@@ -1,4 +1,4 @@
-module.exports = (world) => {
+module.exports =(world) => {
 	world.tick = 0
 	
 	return () => {

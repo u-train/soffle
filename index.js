@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 
 // Just testing that the shared worked.
-require("./shared/lol.js")
+require("./shared/World.js")
 
 const app = express();
 const config = require('./webpack.config.js');
