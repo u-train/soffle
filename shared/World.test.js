@@ -24,21 +24,13 @@ describe("Planet growth", () => {
 })
 
 describe("Ticking", () => {
-	test.todo("Make sure entities update in the correct order.", () => {
-
-	})
+	test.todo("Make sure entities update in the correct order.")
 })
 
 describe("Moving units", () => {
-	test.todo("Should be able to move units from one planet to another successfully", () => {
+	test.todo("Should be able to move units from one planet to another successfully")
 
-	})
+	test.todo("Should take all if the requested unit count is more than the actual.")
 
-	test.todo("Should take all if the requested unit count is more than the actual.", () => {
-
-	})
-
-	test.todo("Should do nothing if there's no units avaliable", () => {
-
-	})
+	test.todo("Should do nothing if there's no units avaliable")
 })
