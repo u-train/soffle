@@ -16,7 +16,7 @@ UnitTransport {
 
 exports[`Moving units Should be able to move units from one planet to another successfully 2`] = `
 Planet {
-  "controlLevel": 1,
+  "controlLevel": 120,
   "id": 3,
   "ownerId": 1,
   "position": {
@@ -36,7 +36,7 @@ Planet {
 exports[`Ticking Make sure entities update in the correct order. 1`] = `
 [
   Planet {
-    "controlLevel": 1,
+    "controlLevel": 120,
     "id": 3,
     "ownerId": 1,
     "position": {
@@ -52,7 +52,7 @@ exports[`Ticking Make sure entities update in the correct order. 1`] = `
     ],
   },
   Planet {
-    "controlLevel": 1,
+    "controlLevel": 120,
     "id": 2,
     "ownerId": 1,
     "position": {
@@ -62,7 +62,7 @@ exports[`Ticking Make sure entities update in the correct order. 1`] = `
     "type": "planet",
     "units": [
       {
-        "count": 16,
+        "count": 0,
         "ownerId": 1,
       },
     ],

@@ -22,6 +22,8 @@ Right now, the goal is to get something running.
 
 Essentially, stealing [Age of Empire's network architecure](https://zoo.cs.yale.edu/classes/cs538/readings/papers/terrano_1500arch.pdf). The primary part would be the built-in [entity interoplation](https://ruoyusun.com/2019/09/21/game-networking-5.html) by explicitly ordering inputs into the future instead of the present.
 
+The simulation runs at 20 ticks per second.
+
 Some more links for useful information:
 - https://developer.valvesoftware.com/wiki/Source_Multiplayer_Networking
 - https://www.gabrielgambetta.com/client-server-game-architecture.html
