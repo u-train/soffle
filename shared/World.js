@@ -1,12 +1,14 @@
 const Player = require("./entities/Player.js")
+const Random = require("rng-js")
 
 module.exports = class World {
 	static entityOrder = ["unitTransport", "planet", "player", "unknown"]
 
-	constructor() {
+	constructor(seed = 0) {
 		this.currentTick = 0
 		this.entities = []
 		this.nextId = 0
+		this.random = new Random(seed)
 
 		this.neutral = this.addEntity(Player, "neutral", "rgb(127, 127, 127)")
 	}
