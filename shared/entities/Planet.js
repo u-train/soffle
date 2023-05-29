@@ -33,7 +33,9 @@ module.exports = class Planet extends Entity {
 		if (!currentUnits) return;
 		if (currentUnits.count === 0) return;
 
-		let actualAmount = currentUnits.count * percentageFromEach
+		let actualAmount = Math.floor(currentUnits.count * percentageFromEach)
+		if (actualAmount === 0) return;
+		
 		currentUnits.count -= actualAmount
 
 		return world.addEntity(UnitTransport, world, forWhoId, this.id, targetId, actualAmount)
