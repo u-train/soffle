@@ -9,7 +9,7 @@ const Entity = require("./Entity.js")
 // Essentially, try to recoup this unit.
 
 module.exports = class UnitTransport extends Entity {
-	static speedPerTick = 10
+	static speedPerTick = 1
 	type = "unitTransport"
 
 	constructor(id, world, ownerId, originId, goalId, amountOfUnits) {

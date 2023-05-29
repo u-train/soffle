@@ -13,6 +13,10 @@ module.exports = class Planet extends Entity {
 		this.controlLevel = Planet.TOTAL_CONTROL_UNITS
 		this.units = [{ ownerId, count: startingUnits }]
 		this.position = position
+		this.growthRate = 20
+		this.sinceLastGrowth = 0
+		this.combatRate = 10
+		this.sinceLastCombat = 0
 	}
 
 	tick(world) {
@@ -58,6 +62,13 @@ module.exports = class Planet extends Entity {
 	}
 
 	tickCombat() {
+		if (this.sinceLastCombat < this.combatRate) {
+			this.sinceLastCombat += 1
+			return
+		}
+
+		this.sinceLastCombat = 0
+
 		// TODO: Implement real combat
 		this.units.forEach((army) => {
 			if (army.count > 0)
@@ -68,7 +79,12 @@ module.exports = class Planet extends Entity {
 	tickGrowth(world) {
 		if (!this.isFullyControlled() || this.isInCombat()) return;
 		if (this.ownerId === world.neutral.id) return;
+		if (this.sinceLastGrowth < this.growthRate) {
+			this.sinceLastGrowth += 1
+			return
+		}
 
+		this.sinceLastGrowth = 0
 		this.getUnitsFor(this.ownerId).count += 1
 	}
 
@@ -91,6 +107,7 @@ module.exports = class Planet extends Entity {
 		}
 	}
 
+	// FIXME: This does not work because there could potentially be more than one conqueror.
 	potentialConqueror() {
 		let playerId
 
@@ -114,6 +131,10 @@ module.exports = class Planet extends Entity {
 		}
 
 		return unit
+	}
+
+	getAllUnits() {
+		return this.units.filter(({count}) => count > 0)
 	}
 
 	// Probably not the behavior we want.

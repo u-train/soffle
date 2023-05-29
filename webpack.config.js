@@ -17,6 +17,11 @@ module.exports = {
 	resolve: {
 		alias: {
 			shared: path.resolve(__dirname, "shared/")
+		},
+		fallback: {
+			"stream": require.resolve("stream-browserify"),
+			"crypto": require.resolve("crypto-browserify"),
+			"buffer": require.resolve("buffer")
 		}
 	},
 	output: {

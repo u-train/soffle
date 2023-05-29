@@ -1,12 +1,15 @@
 const World = require("shared/World.js")
 const Screen = require("shared/Screen.js")
+const Planet = require("shared/entities/Planet")
+const Player = require("shared/entities/Player")
 
 const HEIGHT = 480
 const WIDTH = 720
 const INPUT_LATENCY = 200
-const TICK_RATE = 1000 / 60
+const TICK_RATE = 1000 / 20
 
 const canvas = document.getElementById("canvas")
+const ctx = canvas.getContext("2d")
 canvas.width = WIDTH
 canvas.height = HEIGHT
 
@@ -21,15 +24,14 @@ canvas.height = HEIGHT
 // For now, we're simpletons and just requirestwindowanimation
 
 let world = new World()
-let screen = new Screen(world, canvas)
+let player = world.addEntity(Player, "Bob", "#f00")
+let screen = new Screen(world, canvas, player.id)
 
-let planet = world.createPlanet({x: 80, y: 45})
-let bobId = world.createPlayable("Bob", "#f00").id
-let octoberId = world.createPlayable("October", "#0ff").id
+let planetA = world.addEntity(Planet, player.id, { x: 100, y: 200 }, 16)
+let planetB = world.addEntity(Planet, world.neutral.id, { x: 100, y: 100 }, 16)
 
-planet.units.push({owner: bobId, count: 16})
-planet.units.push({owner: octoberId, count: 16})
-
+planetB.addUnitsIn(player.id, 100)
+PlanetB = planetB
 let lastMillisecondTimeStamp = window.performance.now()
 let simulationBudget = 0
 
